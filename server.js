@@ -10,7 +10,7 @@ app.get('/', (req, res) => res.send('API running'))
 // Define routes
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/products', require('./routes/api/products'))
-
+app.use('/api/quotes', require('./routes/api/quotes'))
 
 const PORT = process.env.PORT || 5000
 
