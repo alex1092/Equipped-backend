@@ -7,7 +7,7 @@ connectDB()
 
 app.get('/', (req, res) => res.send('API running'))
 
-// Define routes
+// Define route
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/products', require('./routes/api/products'))
 app.use('/api/quotes', require('./routes/api/quotes'))
