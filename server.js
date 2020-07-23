@@ -1,9 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20");
-const keys = require("./config/index");
-const chalk = require("chalk");
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
+const User = require("./models/User");
+
 require("./passport");
 
 const connectDB = require("./config/db");
@@ -18,10 +21,31 @@ app.use(cors(
 // }
 ));
 
+// Session saved session
+app.use(session({
+  secret: "secret",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  cookie: {
+      maxAge: 3600
+  }
+}))
+
+// Cookies session
+app.use(cookieParser("secret"))
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.get('/failed', (req, res) => {
+    res.send(400)
+})
+
 
 
 // Init passport
 app.use(passport.initialize());
+
 
 // Connect db
 connectDB();
