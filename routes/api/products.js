@@ -6,7 +6,15 @@ const Product = require('../../models/Product')
 // @route   GET api/products
 // @desc    READ products route 
 // @access  public
-router.get('/', (req, res) => res.send('READ - Product route'))
+router.get('/', async (req, res) => {
+    // res.send('READ - Product route')
+    try{
+        const product = await Product.find()
+        res.json(product)
+    }catch(err){
+        res.json({ message: err })
+    }
+})
 
 // @route   POST api/product/
 // @desc    CREATE product route
