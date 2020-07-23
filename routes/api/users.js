@@ -90,10 +90,10 @@ router.get(
       function (err, user) {
         if (err) {
           User.findOne({ googleId: req.user.id }, function (err, user) {
-            res.redirect("https://elated-tesla-903010.netlify.app");
+            res.redirect("http://equippedvr.com/");
           });
         } else {
-          res.redirect("https://elated-tesla-903010.netlify.app");
+          res.redirect("http://equippedvr.com/");
         }
       }
     );
