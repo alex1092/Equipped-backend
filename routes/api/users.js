@@ -66,7 +66,7 @@ router.post("/login", (req, res, next) => {
 // @desc    Logs out user
 // @access  public
 
-router.get('/users/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.logOut()
     res.sendStatus(200)
 })
@@ -76,7 +76,7 @@ router.get('/users/logout', (req, res) => {
 // @desc    Oauth google route
 // @access  Public
 router.get(
-  "/api/users/auth/google",
+  "/auth/google",
   passport.authenticate("google", { scope: ["profile"] })
 );
 
