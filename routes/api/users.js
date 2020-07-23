@@ -76,7 +76,7 @@ router.get('/users/logout', (req, res) => {
 // @desc    Oauth google route
 // @access  Public
 router.get(
-  "/auth/google",
+  "/api/users/auth/google",
   passport.authenticate("google", { scope: ["profile"] })
 );
 
