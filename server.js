@@ -10,6 +10,8 @@ const User = require("./models/User");
 const connectDB = require("./config/db");
 const app = express();
 
+// Require bodyParser
+app.use(express.json({ extended: false }))
 
 app.use(cors());
 app.use(passport.initialize());
