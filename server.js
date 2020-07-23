@@ -4,69 +4,24 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
 const keys = require("./config/index");
 const chalk = require("chalk");
-
-const User = require("./models/User");
+require("./passport");
 
 const connectDB = require("./config/db");
 const app = express();
 
-// Require bodyParser
-app.use(express.json({ extended: false }))
+// Middleware
+app.use(express.json({ extended: false }));
+app.use(cors(
+//   {
+//   origin: "https://elated-tesla-903010.netlify.app",
+//   credentials: true
+// }
+));
 
-app.use(cors());
+
+
+// Init passport
 app.use(passport.initialize());
-
-
-
-passport.serializeUser((user, callback) => {
-    callback(null, user);
-  });
-  
-  passport.deserializeUser((user, cb) => {
-    callback(null, user);
-  });
-  // Google Strategy
-  passport.use(
-    new GoogleStrategy(
-      {
-        clientID: keys.GOOGLE.clientID,
-        clientSecret: keys.GOOGLE.clientSecret,
-        callbackURL: "/auth/google/callback",
-      },
-      (accessToken, refreshToken, profile, callback) => {
-        console.log(chalk.green(JSON.stringify(profile)));
-        user = { ...profile };
-        return callback(null, profile);
-      }
-    )
-  );
-  
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/failed" }),
-  function (req, res) {
-    User.create(
-      { googleId: req.user.id, displayName: req.user.displayName },
-      function (err, user) {
-        if (err) {
-          User.findOne({ googleId: req.user.id }, function (err, user) {
-            res.redirect("https://elated-tesla-903010.netlify.app");
-          });
-        } else {
-          res.redirect("https://elated-tesla-903010.netlify.app");
-        }
-      }
-    );
-  }
-);
-
-
-
 
 // Connect db
 connectDB();

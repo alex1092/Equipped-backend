@@ -18,7 +18,7 @@ passport.serializeUser((user, callback) => {
       {
         clientID: keys.GOOGLE.clientID,
         clientSecret: keys.GOOGLE.clientSecret,
-        callbackURL: "/auth/google/callback",
+        callbackURL: "/api/users/auth/google/callback",
       },
       (accessToken, refreshToken, profile, callback) => {
         console.log(chalk.green(JSON.stringify(profile)));
