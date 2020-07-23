@@ -53,10 +53,10 @@ app.get(
       function (err, user) {
         if (err) {
           User.findOne({ googleId: req.user.id }, function (err, user) {
-            res.redirect("http://localhost:3000");
+            res.redirect("https://elated-tesla-903010.netlify.app");
           });
         } else {
-          res.redirect("http://localhost:3000");
+          res.redirect("https://elated-tesla-903010.netlify.app");
         }
       }
     );
