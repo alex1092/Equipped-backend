@@ -41,26 +41,21 @@ router.post("/register", (req, res) => {
 // @desc    user log in route
 // @access  public
 
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user) => {
-      
-    if (err) throw err;
-    if (!user) {
-      res
-        .status(401)
-        .send({
-          name: "Incorrect Credentials",
-          message: "The details you have entered are not correct",
-        });
-    } else {
-      req.logIn(user, (err) => {
-        if (err) throw err;
-        res.send(user);
-      });
-    }
-  })(req, res, next);
-
-});
+router.post("/users/login", (req, res, next) => {
+  passport.authenticate('local', (err, user) => {
+      if (err) throw err
+      // if no user found or password doesn't match etc
+      if (!user) {
+          res.status(401).send({name: "Incorrect Credentials", message: "The details you have entered are not correct"})
+      } else {
+          // log in the user through the request object
+          req.logIn(user, err => {
+              if (err) throw err
+              res.send(user)
+          })
+      }
+  })(req, res, next)
+})
 
 // @route   Get api/users/logout
 // @desc    Logs out user
