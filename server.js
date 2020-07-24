@@ -15,10 +15,10 @@ const app = express();
 // Middleware
 app.use(express.json({ extended: false }));
 app.use(cors(
-//   {
-//   origin: "https://elated-tesla-903010.netlify.app",
-//   credentials: true
-// }
+  {
+  origin: "https://equippedvr.com/",
+  credentials: true
+}
 ));
 
 // Session saved session
