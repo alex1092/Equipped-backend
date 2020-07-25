@@ -2,6 +2,8 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const keys = require("./config/index");
 const chalk = require("chalk");
+const User = require("./models/User")
+
 
 
 passport.serializeUser((user, callback) => {
@@ -9,8 +11,11 @@ passport.serializeUser((user, callback) => {
   });
   
   passport.deserializeUser((user, cb) => {
-    callback(null, user);
+    cb(null, user);
   });
+
+  // passport.use(User.createStrategy())
+
   // Google Strategy
   passport.use(
     new GoogleStrategy(

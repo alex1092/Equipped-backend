@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(cors(
   {
-  origin: "https://equippedvr.com/",
+  origin: "http://localhost:3000",
   credentials: true
 }
 ));
@@ -27,9 +27,9 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({mongooseConnection: mongoose.connection}),
-  cookie: {
-      maxAge: 3600
-  }
+  // cookie: {
+  //     maxAge: 3600
+  // }
 }))
 
 // Cookies session
@@ -40,11 +40,6 @@ app.use(passport.session())
 app.get('/failed', (req, res) => {
     res.send(400)
 })
-
-
-
-// Init passport
-app.use(passport.initialize());
 
 
 // Connect db
