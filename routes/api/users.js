@@ -5,7 +5,7 @@ const local = require("passport-local");
 const User = require("../../models/User");
 
 
-passport.use(User.createStrategy())
+
 
 // @route   GET api/users/me
 // @desc    Shows user profile
@@ -41,8 +41,9 @@ router.post("/register", (req, res) => {
 // @desc    user log in route
 // @access  public
 
-router.post("/users/login", (req, res, next) => {
+router.post("/login", (req, res, next) => {
   passport.authenticate('local', (err, user) => {
+    console.log('hello')
       if (err) throw err
       // if no user found or password doesn't match etc
       if (!user) {
@@ -50,8 +51,9 @@ router.post("/users/login", (req, res, next) => {
       } else {
           // log in the user through the request object
           req.logIn(user, err => {
+            console.log('hi')
               if (err) throw err
-              res.send(user)
+              res.send(req.user)
           })
       }
   })(req, res, next)
@@ -85,10 +87,10 @@ router.get(
       function (err, user) {
         if (err) {
           User.findOne({ googleId: req.user.id }, function (err, user) {
-            res.redirect("http://equippedvr.com/");
+            res.redirect("http://localhost:3000/");
           });
         } else {
-          res.redirect("http://equippedvr.com/");
+          res.redirect("http://localhost:3000/");
         }
       }
     );
