@@ -41,7 +41,6 @@ app.get('/failed', (req, res) => {
     res.send(400)
 })
 
-
 // Connect db
 connectDB();
 
