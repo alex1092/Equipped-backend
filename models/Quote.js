@@ -2,16 +2,18 @@ const mongoose = require('mongoose')
 
 const QuoteSchema = new mongoose.Schema({
     user : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'username'
+        type: String
     },
     product: { 
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'product'
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'product'
+        type: String
     },
     length: {
-        type: String,
-        required: true,
+        type: String
+    },
+    location: {
+        type: String
     }
 })
 

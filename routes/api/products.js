@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-// @route   POST api/product/
+// @route   POST api/products/
 // @desc    CREATE product route
 // @access  public
 router.post('/', async (req,res) => {
@@ -37,7 +37,7 @@ router.post('/', async (req,res) => {
 // @route   GET api/products/productId
 // @desc    GET specific product route
 // @access  public
-router.get('/:productId', async (req, res) => {
+router.get('/:productid', async (req, res) => {
     try{
         const product = await Product.findById(req.params.productId)
         res.json(product)
