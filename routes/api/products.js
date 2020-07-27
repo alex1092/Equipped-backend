@@ -25,7 +25,6 @@ router.post('/', async (req,res) => {
         image: req.body.image
     })
     // res.send('CREATE - Product route')
-
     try{
         const savedProduct = await product.save()
         res.json(savedProduct)
@@ -33,6 +32,14 @@ router.post('/', async (req,res) => {
         res.json( { message: err } )
     }
 })
+
+// Test route for image upload
+router.get('/getLatest', async (req, res) => {
+    const getImage = await Product.findOne().sort({_id: -1})
+    res.json(getImage.image)
+})
+
+// CLOUDINARY_URL=cloudinary://796658682685464:njgPGLuJctzK0xa3gSNIiN-SVnk@dgeizgzdw
 
 // @route   GET api/products/productId
 // @desc    GET specific product route
