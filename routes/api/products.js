@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req,res) => {
     const product = new Product({
         product: req.body.product,
-        image: req.body.image
+        
     })
     // res.send('CREATE - Product route')
     try{
