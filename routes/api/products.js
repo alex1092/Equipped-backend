@@ -16,6 +16,18 @@ router.get('/', async (req, res) => {
     }
 })
 
+// @route   GET api/products/getLatest
+// @desc    Returns most recently posted product
+// @access  public
+router.get('/getLatest', async (req, res) => {
+    try{
+        const product = await Product.findOne().sort({_id: -1})
+        res.json(product)
+    }catch(err){
+        res.json( { message: err } )
+    }
+})
+
 // @route   POST api/products/
 // @desc    CREATE product route
 // @access  public
@@ -33,13 +45,6 @@ router.post('/', async (req,res) => {
     }
 })
 
-// Test route for image upload
-router.get('/getLatest', async (req, res) => {
-    const getImage = await Product.findOne().sort({_id: -1})
-    res.json(getImage.image)
-})
-
-// CLOUDINARY_URL=cloudinary://796658682685464:njgPGLuJctzK0xa3gSNIiN-SVnk@dgeizgzdw
 
 // @route   GET api/products/productId
 // @desc    GET specific product route
