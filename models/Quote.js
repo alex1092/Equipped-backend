@@ -12,9 +12,9 @@ const QuoteSchema = new mongoose.Schema({
     
     
     user : {
-        type: String
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'user'
+        // type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
     },
     product: { 
         // type: mongoose.Schema.Types.ObjectId,
