@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   // res.send('READ - Product route')
   try {
     const quote = await Quote.find();
-    res.json(product);
+    res.json(quote);
   } catch (err) {
     res.json({ message: err });
   }
@@ -23,17 +23,18 @@ router.post("/", async (req, res) => {
   const quote = new Quote({
     //Datatype for username&product currently mongoose.Schema.Types.ObjectId
     // username: req.body.username,
+    user: req.body.user,
     product: req.body.product,
     length: req.body.length,
     location: req.body.location,
-    user: req.body.user
+    price: req.body.price
   });
 
   try {
     const savedQuote = await quote.save();
     res.json(savedQuote);
   } catch (err) {
-    res.json({ message: err });
+    res.json( { message: err } );
   }
 });
 
