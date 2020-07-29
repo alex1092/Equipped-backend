@@ -78,7 +78,7 @@ router.patch('/:productId', async (req, res) => {
     try{
         const updatedProduct = await Product.updateOne(
             { _id: req.params.productId }, 
-            { $set: { product: req.body.product } }
+            { $set: { accepted: req.body.accepted } }
         )
         res.json(updatedProduct)
     } catch(err){

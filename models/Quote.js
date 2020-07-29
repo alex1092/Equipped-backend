@@ -33,6 +33,10 @@ const QuoteSchema = new mongoose.Schema({
     price: {
         type: String
         // required: true
+    },
+    accpeted: {
+        type: Boolean,
+        default: false
     }
 })
 
