@@ -75,14 +75,14 @@ router.delete('/:quoteId', async (req, res) => {
   }
 })
 
-// @route   UPDATE api/products/productId
+// @route   UPDATE api/quotes/productId
 // @desc    UPDATE specific product route
 // @access  public
 router.patch('/:quoteId', async (req, res) => {
   try{
       const updatedQuote = await Quote.updateOne(
           { _id: req.params.quoteId }, 
-          { $set: { product: req.body.quote } }
+          { $set: req.body  }
       )
       res.json(updatedQuote)
   } catch(err){

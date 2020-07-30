@@ -34,7 +34,7 @@ const QuoteSchema = new mongoose.Schema({
         type: String
         // required: true
     },
-    accpeted: {
+    accepted: {
         type: Boolean,
         default: false
     }
