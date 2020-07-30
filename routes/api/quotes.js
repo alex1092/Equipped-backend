@@ -31,7 +31,7 @@ router.get('/getLatest', async (req, res) => {
 // @route   GET api/quotes/getPending
 // @desc    Returns all non-approved (accepted: "false" quotes)
 // @access  public
-router.get('/getPending', async (req, res) => {
+router.get('/getpending', async (req, res) => {
   try{
     const quote = await Quote.where("accepted").ne(true)
     res.json(quote)
