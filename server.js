@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(cors(
   {
-  origin: "https://equippedvr.com/",
+  
   credentials: true
 }
 ));
