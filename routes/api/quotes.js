@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route   GET api/products/getLatest
+// @route   GET api/quotes/getLatest
 // @desc    Returns most recently posted product
 // @access  public
 router.get('/getLatest', async (req, res) => {
@@ -25,6 +25,18 @@ router.get('/getLatest', async (req, res) => {
       res.json(quote)
   }catch(err){
       res.json( { message: err } )
+  }
+})
+
+// @route   GET api/quotes/getPending
+// @desc    Returns all non-approved (accepted: "false" quotes)
+// @access  public
+router.get('/getPending', async (req, res) => {
+  try{
+    const quote = await Quote.where("accepted").ne(true)
+    res.json(quote)
+  }catch(err){
+    res.json( { message: err } )
   }
 })
 
@@ -50,8 +62,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// @route   GET api/products/productId
-// @desc    GET specific product route
+// @route   GET api/quotes/quoteId
+// @desc    GET specific quote route
 // @access  public
 router.get('/:quoteId', async (req, res) => {
   try{
@@ -62,8 +74,8 @@ router.get('/:quoteId', async (req, res) => {
   }
 })
 
-// @route   DELETE api/users/create
-// @desc    DELETE user route
+// @route   DELETE api/quote/create
+// @desc    DELETE quote route
 // @access  public
 // router.get('/delete', (req, res) => res.send('DELETE - User router'))
 router.delete('/:quoteId', async (req, res) => {
